@@ -24,6 +24,7 @@ We can also apply mean, mode, median to the obtained dataset.
  ## OpenCV
  Reading and Writing images:
  <code>
+    
     import cv2
     import numpy as np
     img = cv2.imread('input.png')
