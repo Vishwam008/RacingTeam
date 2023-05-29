@@ -40,7 +40,10 @@ This gradient operator can be implemented as convolutions:
 If the magnitude is greater than a certain T then it is an edge.
 
 Hysterisis: 
+
 Not an edge if < T<sub>0</sub>
+
 Edge if > T<sub>1</sub>
+
 If between T<sub>0</sub> and T<sub>1</sub>, edge if connected to another edge.
 
