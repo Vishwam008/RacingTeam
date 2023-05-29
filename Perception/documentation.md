@@ -84,7 +84,7 @@ is represented as <math>h⊗F</math>
 Gives an image similar to the average filter but the edges are intermediate between the median and mean filters. It is basically an average with emphasis decreases away from centre. Fall is more in the corners.
 
 ## Convolution Method
-The convolution method is represented as G[i,j] = 
+The convolution method is represented as:
 
 <math>G[i,j] =  <sup>k</sup>∑<sub>u=-k</sub><sup>k</sup>∑<sub>v=-k</sub> h[u,v]F[i-u,j-v]</math> 
 
@@ -102,3 +102,4 @@ Properties:
 We can create a simple sharpening filter by increasing the emphasis on the pixel itself and having a negative emphasis on the neighbourhood which is the exact opposite of the average filter.
 
 Similarly many such filters can be created by simple intuition.
+
