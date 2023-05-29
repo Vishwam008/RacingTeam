@@ -41,5 +41,16 @@ We fit S in all places where 1s coincide with 1s only. In these places, the 1s a
 
 ## Opening
 Erosion followed by dilation.
- 
+
+We have a brush, say B and an image A. Then we have to fill A with the B stamp such that no stamp is outside B. 
+
+Result is the union of all the stamp.
+
+
+## Closing
+Dilation followed by Erosion.
+
+Again, we have a brush B and an image A. We have to roll stamps of B along the boundary of A such that the stamps do not enter A. 
+
+The result is the complement of the union of all the stamps.
 
