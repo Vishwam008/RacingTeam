@@ -51,14 +51,14 @@ If between T<sub>0</sub> and T<sub>1</sub>, edge if connected to another edge.
 
 ## Laplacian Operator and 2nd derivative
 We will now use the second derivative to detect edges. For this we use the Laplacian operator:
-<img src="https://drive.google.com/file/d/1LHiOwni0HLUWbi7440eBRpbjmhOe8ub8/view?usp=share_link">
+<img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81rVadytNEEFQh1fN_2fKzGFtAdRySoSx5JL-xrjcIXXUjHiy2SnD6I0Ht0D92MVRwToxSrVzdbz7L-M3fHo2n4u7GIw=s2560">
 At any edge the laplacian changes suddenly from a positive to a negative value called zero-crossings.
 
 To an image with discrete pixels this can be applied using the follwing formula: 
-<img src="https://drive.google.com/file/d/1Ead77Gu4hjWd5R-7OAhRc_T87BL3sYML/view?usp=share_link">
+<img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81p925uO58K2770-FCSMlsiqOf09vkldFK_h2Yrz0k39z-4E5y6DghdUSv_qoifKZQhUtEGKhMnu4wHIZZAROsElR3us=s1600">
 
 As a convolution it can be represented as:
-<img src="https://drive.google.com/file/d/1up0q1gOvrWFHD-B2eJiBPzGiUbYL1bW5/view?usp=share_link">
+<img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81oqMJMyg7HTE6rErlfntok5PIz8t0mZFiiYwJJzOdqmj5N86iISH7OSKWawW4fNO64DerKMabfNS1jtO_9hmUMptxaFmw=s1600">
 
 However, the image on the right only takes into account the pixels in 4 directions. This is incorrect as edges can also be at 45°. So we have a more accurate convolution on the right which takes into account diagonal pixels too.
 
