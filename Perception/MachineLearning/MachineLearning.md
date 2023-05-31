@@ -64,5 +64,17 @@ and m is given by:
 
 The method used in this formula is least squares method where sumof squares of errors are minimized.
 
-## Multiple Linear Regression
+
+
+# Logistic Regression
+This is a form of supervised learning and is used for classification.
+
+Logistic regression predicts the probability of a binary event.
+
+Odds: P(E) of event happening/P(E) of event not happening
+
+We approximate the odds to an exponential function: p(x)/(1-p(x)) = e<sup>β<sub>o</sub>s+β<sub>1</sub>x</sup>
+
+Similarly, the function p(x) can also be calculated. This results in a sigmoid curve. 
+
 
