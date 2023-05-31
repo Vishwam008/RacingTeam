@@ -52,6 +52,7 @@ If between T<sub>0</sub> and T<sub>1</sub>, edge if connected to another edge.
 ## Laplacian Operator and 2nd derivative
 We will now use the second derivative to detect edges. For this we use the Laplacian operator:
 <img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81rVadytNEEFQh1fN_2fKzGFtAdRySoSx5JL-xrjcIXXUjHiy2SnD6I0Ht0D92MVRwToxSrVzdbz7L-M3fHo2n4u7GIw=s2560">
+
 At any edge the laplacian changes suddenly from a positive to a negative value called zero-crossings.
 
 To an image with discrete pixels this can be applied using the follwing formula: 
