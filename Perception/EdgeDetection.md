@@ -81,9 +81,9 @@ It includes the following steps:
 	<li>Smoothen Image with 2d Gaussian filter n<sub>𝜎</sub> * I</li>
 	<li>Apply the Sobel derivative filter ∇n<sub>𝜎</sub> * I</li>
 	<li>Obtain the Gradient orientation: </li>
-	<img src="https://drive.google.com/file/d/1fhzt5yjc0qcNUFq5s2wdGjpLGl-IafVn/view?usp=share_link">
+	<img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81pk6k-DUnX2YzcRn7dB2jPeozjAq-shft3dWhA1eWMcX9n7QA1VLjBsqX_m1NiA93kLV_7q6wrWvF9I6czhIA-CFSkwVg=s2560">
 	<li>Compute 1D Laplacian in the direction of the gradient.</li>
-	<img src="https://drive.google.com/file/d/1_LMlraq8o_r8Xi4uWau4gDEEEtG9q0nU/view?usp=share_link">
+	<img src="https://lh3.googleusercontent.com/drive-viewer/AFGJ81pv8vGIU2OQTI16O9jgPVFQmRkfmn7lEsyMFQyIiRGFa5EUuMgH-ChHBpmya5wPmtvOHVpNG0KoO0t8FeHgBkB0frmsTA=s2560">
 </ol>
 
 The smoothening can be altered for detection of finer or coarse edges.
