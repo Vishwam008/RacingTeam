@@ -23,7 +23,7 @@ Kalman filter multiplies both the graphs to create a distribution with high prob
 
 Kalman Filter: 
 
-<img src='Kalman2.png'>
+<img src='Kalman 2.png'>
 
 Here, Ax<sub>k-1</sub> + Bu<sub>k</sub> was a previous estimate (x<sub>k</sub>) (priori estimate) and can then be denoted by x<sup>- </sup>
 
