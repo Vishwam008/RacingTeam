@@ -1,5 +1,5 @@
-# Documentation
-
+# ROS
+<span style="color: red; font-size: 20">If you get 'yaml module not found' then change python to python3 (DO NOT PURGE ROS :p)</span>
 ## Rosnodes
 A node is an executable that uses ROS to communicate with other nodes. 
 
@@ -170,6 +170,12 @@ For rossrv, in CMakeLists.txt:
     )
 </code>
 
+To see info about service:
+<code>
+    
+    rossrv show <service name>
+</code>
+
 Build the package again as we have added messages.<br><br>
 
 ## Writing a Subscriber and Publisher
@@ -269,49 +275,78 @@ where Cone is a datatype defined in Cone.msg:
 </code>
 <br>
 
+## Rosbag
+Rosbag is used to record data from a running ROS system into a .bag file.
 
-# CAN- Controller Area Network
-CAN is basically a bus that allows the sharing of information between multiple nodes.
+This file can be used to store the messages published by any running nodes.
 
-all the nodes in a CAN are connected through a bus and a signal passed by any node is received by all other nodes
-
-A node has the following main components:
-<ol>
-    <li>MCU- Microcontroller Unit</li>
-    <li>CAN controller
-        <ul>
-            <li>CAN_Tx to transmit data</li>
-            <li>CAN_Rx to receive data</li>
-        </ul>
-    <li>Transceiver</li>
-</ol>
-
-The bus consists of two channels: CAN H and CAN L for noise cancellation and two bus termination resistors
-
-The signals are transmitted as differential signals, i.e. complementary pairs so subtracting them would cancel the noise
-
-Logic 1: both CAN H and L are on same voltage so difference is 0 and the bus state is called recessive
-
-Logic 0: both CAN L and H are on different voltage(H with higher) and the bus state is dominant
-
-## Dominance
-If two nodes try to access the bus at the same time the dominant signal always dominates:
-
-Each node has an arbitration ID and to communicate each node puts the ID bitwise onto the bus. The node with lowest ID wins the arbitration and transmits the signal as (0 is dominant).
-
-# Python-CAN
-First, a virtual CAN interface needs to be set up:
 <code>
 
-    bus = can.interface.Bus('node', bustype='virtual')
+	mkdir ~/bagfiles
+	cd ~/bagfiles
+	rosbag record -a
 </code>
 
-Then we shall create a message that can be passed onto the bus:
+This will create a .bag file that begins with a date and time.
+
+
+
 <code>
 
-    msg = can.Message(arbitration_id=0xabcde, data=l)
-    bus.send(msg)
-</code>
-where l is any type of data.
-bus.send(msg) sends the message onto the bus.
+	rosbag info <your bagfile>
+</code>	
+This will print text that contains info about the published topics and the number of messages recorded in each topic.
 
+### Rosbag play
+This feature allows to re-publish the messages that were recorded in rosbag to create an environment similar to that at the time of recording.
+
+<code>
+
+	rosbag play -s 3 -r 2 <your bagfile>
+</code>
+This will play the bag file at twice the rate of original message publish. It will begin from the point in the file that is at a 3 sec offset from the beginning.
+
+Can select specific topics to publish using --topics topic1 topic2
+
+Can use --immediate to start immediately
+
+
+
+### Recording a subset of the data
+<code>
+
+	rosbag record -O[not 0] test /turtle1/cmd_vel /turtle1/pose
+</code>
+This will store the messages of only cmd_vel and pose in test.bag file.
+
+
+The time accuracy and precision of rosbag is very limited.
+
+### Reading messages from rosbag files
+#### Using rostopic echo
+Play the bag file and on a different tab subscribe to the required topic and save the messages into a file using the tee function:
+<code>
+
+    rostopic echo /obs1/gps/fix | tee topic1.yaml
+</code>
+
+Have to use a different tab and file for each topic
+
+#### Using ros_readbagfile
+<code>
+
+    ros_readbagfile <mybagfile.bag> [topic1] [topic2] [topic3] [...] | tee topics.yaml
+</code>
+
+To see the progress use this on a different tab:
+<code>
+
+    watch -n 1 'du -sk topics.yaml | awk '\''{printf "%.3f MiB %s\n", $1/1024, $2}'\'''
+</code>
+
+Use ripgrep to search a yaml file.
+
+## roswtf
+Checks for errors in the file systems or runtime. Also issues warnings.
+
+Basically used when facing a build or communication issue.
