@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<font size=3>
+# NumPy
+<style>fontsize=72</style> 
+<h2 id="array">Array</h2>
+<code>
+<pre><code>arr = numpy.array([1,2,3])
+</code></pre>
+</code>
+<p>For Indexing and slicing an array:
+<code></p>
+<pre><code>a = numpy.array([[1,2,3],[4,5,6]])
+print(a[1,2]) # -&gt; 6
+print(a[1,0:2]) # -&gt; [4,5]
+print(a[0:2, 0:2]) # -&gt; [[1,2],[4,5]]
+</code></pre>
+<p></code><br><br></p>
+<h1 id="matplotlib">Matplotlib</h1>
+<h2 id="plotting-a-graph-with-given-set-of-points">Plotting a graph with given set of points</h2>
+<code>
+<pre><code>import matplotlib.pyplot as plt
+import numpy as np
+xp = np.array([3,2,4])
+yp = np.array([5,1,7])
+plt.plot(xp, yp) # add 'o' as third argument to plot without line.
+plt.show() # show the plot
+</code></pre>
+</code>
+<p>Using plt.plot(yp) will plot the y values taking the x values as 0, 1, 2.. by default</p>
+<p>The following options can also be used</p>
+<ul>
+    <li>marker="*" uses stars as point markers</li>
+    <li>ms=10 marker size is set to 10</li>
+    <li>mec="y" marker edge color is set to yellow</li>
+    <li>mfc="r" marker face color is set to red</li>
+    <li>ls=":" dotted linestyle</li>
+    <li>label="India" add a label to the dataset</li>
+    <li>formatted string: "marker line color" plot(xp, yp, "*:r") star markers with dotted red line</li>
+</ul>
+<p>Adding labels: plt.xlabel(&quot;X- Axis&quot;) and plt.ylabel(&quot;Y-Axis&quot;)<br><br><br></p>
+<h1 id="interpolation">Interpolation</h1>
+<p>Converting a set of discrete data points into a continuous system of data.</p>
+<h2 id="linear-spline">Linear Spline</h2>
+<p>Basically connecting the adjacent data points to form line segments.</p>
+<p>Given a continuous set of points: (x0, y0), (x1, y1) ... (xn, yn) [x0&lt;x1&lt;..xn]</p>
+<p>Data corresponding to any x: x<sub>i</sub>&lt;x&lt;x<sub>i+1</sub> is given by:</p>
+<p>f<sub>1</sub>(x) = y<sub>i</sub> + (y<sub>i+1</sub> - y<sub>i</sub>)*(x-x<sub>i</sub>)/(x<sub>i+1</sub>-x<sub>i</sub>)</p>
+<p>Disadvantages of Linear spline:</p>
+<ul>
+    <li>Considers only two datapoints at a time for drawing information</li>
+    <li>Has internal knots: (non continuous derivatives)</li>
+</ul><br>
+<h2 id="quadratic-spline">Quadratic spline</h2>
+<p>Similar to linear spline but adjacent datapoints are connected by a second order polynomial</p>
+<p>Between any two points (x<sub>i-1</sub>, y<sub>i-1</sub>) and (x<sub>i</sub>, y<sub>i</sub>) the spline is given by a<sub>i</sub>x<sup>2</sup> + b<sub>i</sub>x + c.</p>
+<p>Each equation will have three unknowns, and we thus need 3 equations.</p>
+<p>Two can be obtained by putting (x<sub>i-1</sub>, y<sub>i-1</sub>) and (x<sub>i</sub>, y<sub>i</sub>)</p>
+<p>The last can be obtained by equating the slope of splines on either side of the i<sup>th</sup> point. This will allow for smoothness of the interpolated curve.</p>
+<p>Thus we will have a total of 3n-1 equation of for n systems of equations in 3 variables each.</p>
+<p>The last equation can be obtained by assuming the first or last spline to linear rather than quadratic. Thus, a<sub>0</sub> = 0 or a<sub>n</sub> = 0<br><br><br></p>
+<h2 id="cubic-spline">Cubic Spline</h2>
+<p>Conditions on S if it is the cubic spline of a given function f consisting of nodes: x0&lt;x1&lt;x2..&lt;xn</p>
+<ul>
+    <li>S<sub>i</sub>(x<sub>i</sub>) = f<sub>i</sub>(x<sub>i</sub>)</li>
+    <li>S<sub>i</sub>(x<sub>i+1</sub>) = S<sub>i+1</sub>(x<sub>i+1</sub>)</li>
+    <li>S'<sub>i</sub>(x<sub>i+1</sub>) = S'<sub>i+1</sub>(x<sub>i+1</sub>)</li>
+    <li>S''<sub>i</sub>(x<sub>i+1</sub>) = S''<sub>i+1</sub>(x<sub>i+1</sub>)</li>
+    <li> And one of these conditions:<ul>
+        <li>S''(x<sub>0</sub>) = S''(x<sub>n</sub>) = 0 [free or natural boundary]</li>
+        <li>S'(x<sub>0</sub>) = f'(x<sub>0</sub>) and S'(x<sub>n</sub>) = f'(x<sub>n</sub>) [Clamped boundary]</ul>
+</ul>
+<p>Using all of these, we obtain the following structure of Ss:</p>
+<p>S<sub>i</sub>(x) = a<sub>i</sub> + b<sub>i</sub>(x-x<sub>i</sub>) + c<sub>i</sub>(x-x<sub>i</sub>)<sup>2</sup> + d<sub>i</sub>(x-x<sub>i</sub>)<sup>3</sup><br><br><br></p>
+<h2 id="developing-a-code-to-plot-the-spline-interpolation-of-a-given-set-of-points">Developing a code to plot the spline interpolation of a given set of points</h2>
+<h3 id="linear-interpolation">Linear Interpolation</h3>
+<p>A linear interpolation can be easily plotted by the given formula</p>
+<p>A linspace can be created between the greatest and least values of x.</p>
+<p>We then create a function that would map the corresponding spline values for each point in the linspace.</p>
+<p>The values obtained from the function can be stored in a list and this would be plotted against the linspace to obtain the linear spline interpolation<br><br></p>
+<h3 id="cubic-spline-interpolation">Cubic Spline Interpolation</h3>
+<p>Cubic spline is comparitively difficult.</p>
+<p>We first create a set of model equations by the conditions set in cubic spline method for a general datapoint (xi, yi).</p>
+<p>These equations will have 4 unkowns per equation where unkowns are the coeffecients of the spline equations.</p>
+<p>The first unknown is easily calculated by putting in x<sub>i</sub> in the i<sup>th</sup> equation.</p>
+<p>Thus we are left with 3*n variables. (Here n is the number of datapoints)</p>
+<p>The model can then be applied to all other points by looping the algorithm.</p>
+<p>This system of 3n equations can be stored into a matrix and evaluated by Gauss elimination method.</p>
+<p>After having the set of constants the spline values can be mapped and plotted in a method similar to that in linear interpolation<br><br><br></p>
+<h1 id="pid-controllers">PID Controllers</h1>
+<p>P-Proportional
+I-Integral
+D-Derivative</p>
+<p>Plant- System we want to control</p>
+<p>Aim-Provide suitable actuating signals so to receive desired controlled variables</p>
+<img source="">
+<p>Error term- the difference between the final desired value and the current value. This error term is used to give out actuating signals.</p>
+<p>Proportional path- outputs actuator signals as a linear function of the error term.</p>
+<p>Taking the example of a drone, if it requires 100rpm to hover and desired output is 50m then it would stop at a height of 2m for a proportainality constant of 50.</p>
+<p>We eliminate this constancy error by integral.</p>
+<p>Integral path- records and sums past values so that there will be a positive increment in signals even in case of constancy of error term.</p>
+<p>Using both, the drone would overshoot the 50m mark and to prevent this we would add a derivative error</p>
+<p>Derivative error: measures rate of change in error and predicts the future in doing so and thus prevents overshoot.<br></p>
+<h2 id="handling-saturations-in-actuator">Handling saturations in actuator</h2>
+<p><b>Integral Windup</b>
+Occurs when the integral is not aware of the upper limit of the actuator. Have to wait for a large negative error value for the signal to reduce from upper limit.</p>
+<h3 id="clamping">Clamping</h3>
+<p>Turning the integrator off when:</p>
+<ol>
+    <li>The output is saturating [Using a saturation check]</li>
+    <li>Error is the same sign as the command variable[Making error worse]</li>
+</ol><br>
+<h2 id="noise-reduction">Noise Reduction</h2>
+<p>Any waveform can be broken into a summation of sine waves</p>
+<p>The derivative of a sine wave Asin(wt) is Awcos(wt) thus the derivative depends on the frequency of the signal.</p>
+<p>We apply a low pass filter to the derivative to allow all the low frequencies and attenuate the higher frequencies to prevent amplification of noise.</p>
+<p>Represented by SN/(S+N) where N is the cut-off frequency</p>
+<p>Alternative method: create a feedback loop with N in the forward path and integral in the feeback path. [Increased efficiency]</p>
+<h2 id="building-a-pid-for-a-drone">Building a PID for a drone</h2>
+<p>First i looked for an expression that would give us the thrust and total force acting on the aircraft.</p>
+<p>PID concepts can then be used to derive the rpm from the error term</p>
+<p>The rpm can then be converted to force by the found expression</p>
+<p>The force can be further evaluated to find acceleration, velocity and the current position of the drone.</p>
+<p>I used small time intervals dt as steps of 0.001.</p>
+<p>For finding PID outputs i used the following:</p>
+<ul>
+    <li>P = k1*err</li>
+    <li>I += k2*err*dt</li>
+    <li>D = k3*(err - perr)/dt</li>
+</ul>
+<p>where ki are the constants and perr is the previous error. <br><br><br></p>
+<h1 id="optimisation">Optimisation</h1>
+<p>Obtaining a the most suitable outputs for a given set of inputs by modifying the objective function and other methods</p>
+<h2 id="terms">Terms</h2>
+<ol>
+    <li><b>Objective Function: </b>Property that need to be maximised/minimised</li>
+    <li><b>Decision Variables: </b>Free variables that can be changed by the optimiser.</li>
+    <li><b>Constraint: </b>Conditions that bound the optimiser</li>
+</ol>
+<h2 id="gradient-based-solvers">Gradient based solvers</h2>
+<p>Algorithms that use gradient to solve an optimisation problem</p>
+<p>Steps:<ul></p>
+<li>Search Direction</li>
+<li>Step size</li>
+<li>Convergence Check</li>
+</ul>
+<p>Only find local minimas.</p>
+<h2 id="gradient-free-algorithms">Gradient Free algorithms</h2>
+<p>No derivatives required</p>
+<p>Can be applied to discrete or noisy distributions.</p>
+<p><b>Exhaustive Search: </b>Evaluate all of the datapoints in a dataset.</p>
+<p><b>Genetic Algorithm: </b>Starts off with initial candidates in a dataset and scores them according to the objective function. Then it reproduces new candidates from the suitable initial candidates. Process continues till all candidates converge at a point.</p>
+<p><b>Particle Swarm: </b>Same as genetic but more advanced. Each particle in the genetic analysis has a velocity. The new velocity(and thus the new position) is determined by taking into account the: (i)current direction, (ii)direction of previous best particle, (iii)direction of current best particle in swarm.</p>
+<h2 id="derivative-techniques">Derivative Techniques</h2>
+<h3 id="1symbolic">1.Symbolic</h3>
+<p>Each term is evaluated step-by-step using rules of differentiation to obtain a new expression that gives the derivative of the original expression.</p>
+<h3 id="2numerical">2.Numerical</h3>
+<p>Uses the fundamental definition of derivative to calculate the slope of curve between two points with infinitesimally small gap.</p>
+<h3 id="3automatic">3.Automatic</h3>
+<p>Most accurate and suitable for computer code.</p>
+<h2 id="least-squares">Least squares</h2>
+<p>For a given set of discrete datapoints, a line (y = mx + c) is plotted.</p>
+<p>The error for a given datapoint (x<sub>0</sub>, y<sub>0</sub>)  is the difference (y<sub>0</sub> - (mx<sub>0</sub> + c))</p>
+<p>Least squares line fit is a line such that these sum of squares of these errors are minimised.</p>
+<h2 id="radius-of-curvature">Radius of Curvature</h2>
+<p>the radius of curvature at a point is given by the expression: r = (1 + (y')^2)^1.5/|y''|</p>
+<p>We already know the equations by the checkpoint 2.</p>
+<p>We apply the formula to each and create a method to calculate the sum of radii of curvature of all the points.</p>
+<p>We then pass on this method to scipy.optimize(&lt;method_name&gt;, &lt;initial_guess&gt;) with any initial guess and get the minima tuple.</p>
+<p>This tuple is then passed onto the original method to get the minimized radius of curvature.
+</font></p>
+
+</body>
+</html>

@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>documentation.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="documentation">Documentation</h1>
+<h2 id="rosnodes">Rosnodes</h2>
+<p>A node is an executable that uses ROS to communicate with other nodes.</p>
+<p>roscore shall be run whenever using ros. It starts up master which handles all the publishwes, subscribers and messages.</p>
+<p>rosnode list:
+lists all active nodes</p>
+<p>rosrun package_name node_name (to run a node of a package)<br><br></p>
+<h2 id="rostopic">Rostopic</h2>
+<p>Any topic with a datatype to which subscribers and publishers can subscribe/publish</p>
+<p>rostopic list: prints all topics currently subscribed to and published</p>
+<p>rostopic type topic: returns the message type</p>
+<p>rostopic echo: prints the messages of the topic</p>
+<p>rostopic pub [topic] [message_type] --[args]: publish a message<br>
+-1: publish one message<br>
+-r [h]: publish multiple messages at h frequency</p>
+<p>rostopic hz: to see rate at which data is published<br><br></p>
+<h2 id="rosservice">Rosservice</h2>
+<p>rosservice list: lists services<br>
+rosservice type [service] : shows the service type<br>
+rosservice show [service_type]: shows the arguments in a service<br>
+rosservice call [service] [args]: call a service <br><br></p>
+<h2 id="rosparam">Rosparam</h2>
+<p>Rosparam is used to change the values, store, load and operate on the values in the parameter database of the server.<br>
+rosparam dump [file_name]: save in a file<br>
+rosparam list<br>
+rosparam load [file_name] [name_space]:<br>
+rosparam get [parameter]<br>
+rosparam set [parameter] [values]<br><br></p>
+<h2 id="rqtloggerlevel-and-rqtconsole">rqt_logger_level and rqt_console</h2>
+<p>Both of the nodes are GUIs.</p>
+<p>rqt_console prints the messages that are output by any node</p>
+<p>rqt_logger_level is used to specify the level of message shown in console: Fatal Error Warn Info Debug</p>
+<p>Selecting any level would show messages of that level and those before it<br><br></p>
+<h2 id="roslaunch">roslaunch</h2>
+<p>roslaunch is used to used to start multiple nodes at a time</p>
+<p>A launch file:
+<code></p>
+<pre><code>&lt;launch&gt;
+    &lt;group ns=&quot;turtlesim1&quot;&gt;
+        &lt;node pkg=&quot;turtlesim&quot; name=&quot;sim&quot; type=&quot;turtlesim_node&quot;/&gt;
+    &lt;/group&gt;
+
+    &lt;group ns=&quot;turtlesim2&quot;&gt;
+        &lt;node pkg=&quot;turtlesim&quot; name=&quot;sim&quot; type=&quot;turtlesim_node&quot;/&gt;
+    &lt;/group&gt;
+    
+    &lt;node pkg=&quot;turtlesim&quot; name=&quot;mimic&quot; type=&quot;mimic&quot;&gt;
+        &lt;remap from=&quot;input&quot; to=&quot;turtlesim1/turtle1&quot;/&gt;
+        &lt;remap from=&quot;output&quot; to=&quot;turtlesim2/turtle1&quot;/&gt;
+    &lt;/node&gt;
+&lt;/launch&gt;
+</code></pre>
+</code>
+<p>Here, we launch two nodes of the same type but diff. names: turtlesim1 and 2.</p>
+<p>The output of one node is givent to turtlesim2 as input. So both turtles will execute same movements.<br><br></p>
+<h2 id="rosed">rosed</h2>
+<p>Allows us to edit a file from any location by using package and file name</p>
+<p>rosed [package_name] [file_name]<br><br></p>
+<h2 id="ros-msg-and-srv">ROS msg and srv</h2>
+<p>msg: a text file describing the fields of a message and allows to write the source code of a ros message</p>
+<p>srv: describes a service and has two parts- request and response</p>
+<p>fields can be integers, strings, or header(special datatype that contains timestamp and coordinates)</p>
+<p>msg file:</p>
+<code>
+<pre><code>Header header
+string child_frame_id
+geometry_msgs/PoseWithCovariance pose
+geometry_msgs/TwistWithCovariance twist
+</code></pre>
+</code>
+<p>srv file:
+<code>
+int64 A
+int64 B
+---
+int64 Sum
+</code>
+fields after the --- are responses and before are the requests.<br><br></p>
+<h2 id="creating-a-ros-srv-and-msg">Creating a ros srv and msg</h2>
+<p>Create a msg direcory in your ros package</p>
+<p>Add an .msg file containing the required datatypes</p>
+<p>The package.xml shall have the following tags:
+<code></p>
+<pre><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+&lt;exec_depend&gt;message_runtime&lt;/exec_depend&gt;
+</code></pre>
+</code>
+<p>The CMakeLists.txt shall have the following:
+<code></p>
+<pre><code>find_package(catkin REQUIRED COMPONENTS
+roscpp
+rospy
+std_msgs
+message_generation
+)
+</code></pre>
+</code>
+<code>
+<pre><code>catkin_package(
+    CATKIN_DEPENDS message_runtime
+)
+</code></pre>
+</code>
+<code>
+<pre><code>add_message_files(
+    FILES
+    &lt;file_name&gt;.msg
+)
+</code></pre>
+</code>
+<code>
+<pre><code>generate_messages(
+    DEPENDS
+    std_msgs
+)
+</code></pre>
+</code>
+<p>To check if the message is detected:</p>
+<p>rosmsg show &lt;message_name&gt;</p>
+<p>For rossrv, in CMakeLists.txt:
+<code></p>
+<pre><code>add_service_files(
+    FILES
+    AddTwoInts.srv
+)
+</code></pre>
+</code>
+<p>Build the package again as we have added messages.<br><br></p>
+<h2 id="writing-a-subscriber-and-publisher">Writing a Subscriber and Publisher</h2>
+<p>Make a 'scripts' folder in the ros package.
+In CMakeLists.txt:
+<code></p>
+<pre><code>catkin_install_python(PROGRAMS scripts/talker.py
+    DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
+</code></pre>
+</code>
+Build the project after adding the files.<br>
+<p>Publisher:
+<code></p>
+<pre><code>import rospy
+from std_msgs.msg import String
+
+def talker():
+    pub = rospy.Publisher('chatter', String, queue_size=10) # publish to topic chatter of type String, maximum messages at a time is 10
+    rospy.init_node('talker', anonymous=True) # initialize the talker node(this node) and make it unique adding numbers at the end of the name (anonymous)
+    rate = rospy.Rate(10) # loops at 10hz
+    while not rospy.is_shutdown(): # while the node is running
+        hello_str = &quot;hello world %s&quot; % rospy.get_time() # a string message
+        rospy.loginfo(hello_str) # adding info to the log console
+        pub.publish(hello_str) # publishing the message
+        rate.sleep() # sleep such that publishing rate is 10hz
+
+if __name__ == '__main__':
+    try:
+        talker()
+    except rospy.ROSInterruptException: # thrown when ^C is pressed
+        pass
+</code></pre>
+</code>
+<p>Listener:
+<code></p>
+<pre><code>#!/usr/bin/env python3
+import rospy
+from std_msgs.msg import String
+
+def callback(data):
+    rospy.loginfo(rospy.get_caller_id() + &quot;I heard %s&quot;, data.data)
+
+if __name__ == '__main__':
+    rospy.init_node('listener', anonymous=True)
+    rospy.Subscriber(&quot;chatter&quot;, String, callback) # Subscribes to chatter topic of String type 
+    rospy.spin() # spin simply keeps python from exiting until this node is stopped
+</code></pre>
+</code>
+<p>These can be run using rosrun. The activities can be monitored by rqt_console.
+<br><br></p>
+<h2 id="creating-a-node">Creating a node</h2>
+<p>Create a python file in the scripts dir with the following basic structure:</p>
+<code>
+<pre><code>#!/usr/bin/env python3
+import rospy
+
+if __name__ == &quot;__main__&quot;:
+    rospy.init_node(&quot;test_node&quot;) # Initializing a node named test_node
+
+    rospy.loginfo(&quot;Hello World&quot;)
+    rospy.logwarn(&quot;Warning&quot;)
+    rospy.logerr(&quot;Error&quot;)
+
+    rospy.sleep(1.0) # Sleep for 1 sec
+
+    rospy.loginfo(&quot;End&quot;)
+</code></pre>
+<p></code><br></p>
+<h2 id="using-arrays-and-custom-data-types-in-msg-files">Using arrays  and custom data types in .msg files</h2>
+<p>We can make an array of variable or fixed size of any datatype using:
+<code></p>
+<pre><code>int32[] x
+float32[3] y    
+</code></pre>
+</code>
+<p>A custom datatype can also be used as follows:
+<code></p>
+<pre><code>Cone c
+</code></pre>
+</code>
+where Cone is a datatype defined in Cone.msg:
+<code>
+<pre><code>int32 x
+int32 y
+int32 z
+time t
+</code></pre>
+</code>
+<br>
+<h1 id="can--controller-area-network">CAN- Controller Area Network</h1>
+<p>CAN is basically a bus that allows the sharing of information between multiple nodes.</p>
+<p>all the nodes in a CAN are connected through a bus and a signal passed by any node is received by all other nodes</p>
+<p>A node has the following main components:</p>
+<ol>
+    <li>MCU- Microcontroller Unit</li>
+    <li>CAN controller
+        <ul>
+            <li>CAN_Tx to transmit data</li>
+            <li>CAN_Rx to receive data</li>
+        </ul>
+    <li>Transceiver</li>
+</ol>
+<p>The bus consists of two channels: CAN H and CAN L for noise cancellation and two bus termination resistors</p>
+<p>The signals are transmitted as differential signals, i.e. complementary pairs so subtracting them would cancel the noise</p>
+<p>Logic 1: both CAN H and L are on same voltage so difference is 0 and the bus state is called recessive</p>
+<p>Logic 0: both CAN L and H are on different voltage(H with higher) and the bus state is dominant</p>
+<h2 id="dominance">Dominance</h2>
+<p>If two nodes try to access the bus at the same time the dominant signal always dominates:</p>
+<p>Each node has an arbitration ID and to communicate each node puts the ID bitwise onto the bus. The node with lowest ID wins the arbitration and transmits the signal as (0 is dominant).</p>
+<h1 id="python-can">Python-CAN</h1>
+<p>First, a virtual CAN interface needs to be set up:
+<code></p>
+<pre><code>bus = can.interface.Bus('node', bustype='virtual')
+</code></pre>
+</code>
+<p>Then we shall create a message that can be passed onto the bus:
+<code></p>
+<pre><code>msg = can.Message(arbitration_id=0xabcde, data=l)
+bus.send(msg)
+</code></pre>
+</code>
+where l is any type of data.
+bus.send(msg) sends the message onto the bus.
+
+</body>
+</html>
