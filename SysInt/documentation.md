@@ -1,5 +1,11 @@
 # ROS
+
+## Random Tips
 <span style="color: red; font-size: 20">If you get 'yaml module not found' then change python to python3 (DO NOT PURGE ROS :p)</span>
+
+To kill any astray roscores: 
+`killall -9 roscore` and `killall -9 rosmaster`
+
 ## Rosnodes
 A node is an executable that uses ROS to communicate with other nodes. 
 
@@ -382,3 +388,53 @@ Use ripgrep to search a yaml file.
 Checks for errors in the file systems or runtime. Also issues warnings.
 
 Basically used when facing a build or communication issue.
+
+## Applying ros system to multiple machines
+<ul>
+    <li>You only need one master. Select one machine to run it on.</li>
+    <li>All nodes must be configured to use the same master, via ROS_MASTER_URI.</li>
+    <li>There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).</li>
+    <li>Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). </li>
+</ul>
+
+```
+    ssh hal
+    roscore
+```
+Login to hal machine and start the master
+
+```
+    ssh hal
+    export ROS_MASTER_URI=http://hal:11311
+    rosrun rospy_tutorials listener.py
+```
+configure the master and start a listener on hal
+
+```
+    ssh marvin
+    export ROS_MASTER_URI=http://hal:11311
+    rosrun rospy_tutorials talker.py
+```
+Login to marvin, configure the master and run the talker.
+
+## TF(Transform)
+Used to transform the coordinates of the robot, basically work with changing frames of a bot.
+
+`roslaunch turtle_tf turtle_tf_demo.launch` launches a single window with 2 turtles. One can be moved using arrow keys and the other follows you.
+
+Here tf broadcaster broadcasts three frames: world, turtle1 and turtle2.
+
+### rqt_tf_tree
+To visualise this use:
+'''
+rosrun rqt_tf_tree rqt_tf_tree
+'''
+
+### tf_echo
+tf_echo reports the transform between any two frames broadcast over ROS. 
+
+```
+rosrun tf tf_echo [reference_frame] [target_frame]
+```
+
+
