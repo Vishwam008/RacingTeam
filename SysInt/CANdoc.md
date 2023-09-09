@@ -29,17 +29,54 @@ Each node has an arbitration ID and to communicate each node puts the ID bitwise
 
 # Python-CAN
 First, a virtual CAN interface needs to be set up:
-<code>
-
+```
     bus = can.interface.Bus('node', bustype='virtual')
-</code>
+```
 
 Then we shall create a message that can be passed onto the bus:
-<code>
 
+```
     msg = can.Message(arbitration_id=0xabcde, data=l)
     bus.send(msg)
-</code>
+```
 where l is any type of data.
 bus.send(msg) sends the message onto the bus.
+
+
+
+
+## Util functions in terminal
+```
+$ sudo modprobe vcan
+```
+modprobe command adds or removes a module from the linux kernel.
+
+```
+$ sudo ip link add dev vcan0 type vcan
+$ sudi ip link set up vcan
+```
+Added the device of type vcan named vcan0
+
+```
+cangen vcan0
+```
+generates and publishes random messages
+
+```
+cansend vcan0 1F334455#1122334455667788
+```
+Sends this specific message
+
+```
+$ candump vcan0
+```
+prints all the messages on vcan0
+-l saves all these messages to a logfile while printing is disabled
+
+```
+$ cat candump-2023-09-10_000710.log | canplayer vcan0=vcan0
+```
+plays and publishes the messages stored on the logfile.
+
+When using a real machine 'vcan' can be replaced by can and vcan0 by can0
 
