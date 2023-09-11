@@ -1,4 +1,6 @@
 # CAN- Controller Area Network
+
+## Important: vcan is an interface of socketcan; they are not completely different things!!! :P
 CAN is basically a bus that allows the sharing of information between multiple nodes.
 
 all the nodes in a CAN are connected through a bus and a signal passed by any node is received by all other nodes
@@ -80,3 +82,39 @@ plays and publishes the messages stored on the logfile.
 
 When using a real machine 'vcan' can be replaced by can and vcan0 by can0
 
+
+## Encoding Decoding using python
+```
+>>> import cantools
+>>> from pprint import pprint
+>>> db = cantools.database.load_file('tests/files/dbc/motohawk.dbc')
+>>> db.messages
+[message('ExampleMessage', 0x1f0, False, 8, 'Example message used as template in MotoHawk models.')]
+>>> example_message = db.get_message_by_name('ExampleMessage')
+>>> pprint(example_message.signals)
+```
+
+### Encoding
+```
+>>> import can
+>>> can_bus = can.interface.Bus('vcan0', bustype='socketcan')
+>>> data = example_message.encode({'Temperature': 250.1, 'AverageRadius': 3.2, 'Enable': 1})
+>>> message = can.Message(arbitration_id=example_message.frame_id, data=data)
+>>> can_bus.send(message)
+```
+
+### Decoding
+```
+>>> message = can_bus.recv()
+>>> db.decode_message(message.arbitration_id, message.data)
+```
+
+### To print the received message on the terminal
+```
+$ candump vcan0 | python3 -m cantools decode tests/files/dbc/motohawk.dbc
+```
+
+
+Each message has a list of signals which are the real value containers. (Check the interface datasheet)
+
+When encoding a message, it shall be provided as a dictionary where EVERY signal is a key and all have thier respective data as values.
