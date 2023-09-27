@@ -6,6 +6,10 @@
 To kill any astray roscores: 
 `killall -9 roscore` and `killall -9 rosmaster`
 
+ros-noetic-ros-base: bare bones (no gui tools)
+ros-noetic-desktop: + rqt and rviz
+ros-noetic-desktop-full: + 2d/3d simulators and perception packages
+
 ## Rosnodes
 A node is an executable that uses ROS to communicate with other nodes. 
 
