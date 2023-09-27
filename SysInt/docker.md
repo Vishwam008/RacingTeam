@@ -51,3 +51,18 @@ Good to go!
 
 ## Ros containers
 Do we need multiple containers?
+
+## Using docker hub
+Login into docker hub by using: `sudo docker login`
+<ol>
+	<li>Create an account</li>
+	<li>Create a repo</li>
+	<li>Any changes made to a container can be pushed online to an image by: `sudo docker commit CONTAINER_ID USRNM/REPO:TAG_NAME`</li>
+	<li>Run the same image using `sudo docker run -it USRNM/REPO:TAG_NAME`</li>
+</ol>
+
+To create a new repo and commit an image to it:
+```
+docker tag local-image:tagname new-repo:tagname
+docker push new-repo:tagname
+```
