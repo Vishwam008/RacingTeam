@@ -1,5 +1,7 @@
 # Containers
 <a href="https://youtu.be/pTFZFxd4hOI?si=69S6WmAiZ4Y52x-h">Tutorial I am using.</a>
+
+
 <a href="http://wiki.ros.org/docker/Tutorials">Ros docker tutorials</a>
 
 Basically used to run an application on different machines that has several dependencies. 
@@ -35,6 +37,8 @@ Container is the running environment for an image
 
 `docker run -p6000:6379` Run the image with tethering to port number 6000 of the host and the port number of 6379.
 
+`docker container stop CONTAINER_ID` to stop a container.
+
 
 ## Ros Docker
 `docker pull ros:noetic-robot` to pull the noetic image of ros.
@@ -66,3 +70,47 @@ To create a new repo and commit an image to it:
 docker tag local-image:tagname new-repo:tagname
 docker push new-repo:tagname
 ```
+
+## To do:
+Explore docker with vs code.
+
+## docker images
+`docker image rm -f IMG_NAME` removes the image with tag IMG_NAME and f: forcefully
+`docker run -it` i:interactive t:tty:terminal to type in
+
+
+## docker container
+`docker container ls` list all the running containers
+
+`docker container ls -a` list even stopped containers
+
+`docker container start CNTR_ID` start the container having the given id
+
+`docker container rm`
+
+`docker container prune` remove all non running containers
+
+`docker run --rm --name CNTR_NM IMG_NM` rm: remove automatically after the container is stopped name: give the container a name
+
+`docker exec -it CNTR_NM bash (or CMND)` open a new terminal in  a running container or execute the given command
+
+Connecting volumes of container to host: `docker run -it -v ABS_PATH_HOST:ABS_PATH_CONT`
+
+`docker commit c3f279d17e0a  svendowideit/testimage:version3` to commit a docker container to an image
+
+
+## A custom image
+Create a folder for the image and create a file called Dockerfile. In that file:
+
+`FROM <starting image>`
+
+`RUN apt-get update && apt-get install -y nano && rm -rf /var/lib/apt/lists/*` installs nano 
+
+`COPY dir1/ /dir2/` copies all contents of dir1 in the current folder into dir2 of root in the image
+
+`docker build -t NAME .` 	Used to build our image. NAME is the tag used to identify the IMAGE and '.' signifies the current working directory.
+
+## Conda
+`conda config --set auto_activate_base false` to stop conda from running automatically on startup.
+
+
