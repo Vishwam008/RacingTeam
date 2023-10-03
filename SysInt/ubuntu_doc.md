@@ -24,3 +24,8 @@ Output: `Full Name[]: ` Add data if needed or press Enter to give default values
 
 **Permanent:** Add the command to .bashrc
 
+
+## Conda
+`conda config --set auto_activate_base false` to stop conda from running automatically on startup.
+
+

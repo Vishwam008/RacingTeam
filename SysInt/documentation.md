@@ -30,7 +30,7 @@ rostopic type topic: returns the message type
 
 rostopic echo: prints the messages of the topic
 
-rostopic pub [topic] [message_type] --\[args\]: publish a message<br>
+rostopic pub [topic] [message_type] [args]: publish a message<br>
 -1: publish one message<br>
 -r [h]: publish multiple messages at h frequency
 

@@ -99,6 +99,9 @@ Connecting volumes of container to host: `docker run -it -v ABS_PATH_HOST:ABS_PA
 `docker commit c3f279d17e0a  svendowideit/testimage:version3` to commit a docker container to an image
 
 
+`docker run -it     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --device=/dev/dri:/dev/dri   vishwam008/hello-docker:ros_torch_tensor  ` : To use gui applications.
+
+
 ## A custom image
 Create a folder for the image and create a file called Dockerfile. In that file:
 
@@ -110,7 +113,5 @@ Create a folder for the image and create a file called Dockerfile. In that file:
 
 `docker build -t NAME .` 	Used to build our image. NAME is the tag used to identify the IMAGE and '.' signifies the current working directory.
 
-## Conda
-`conda config --set auto_activate_base false` to stop conda from running automatically on startup.
 
 
