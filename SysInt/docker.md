@@ -113,5 +113,9 @@ Create a folder for the image and create a file called Dockerfile. In that file:
 
 `docker build -t NAME .` 	Used to build our image. NAME is the tag used to identify the IMAGE and '.' signifies the current working directory.
 
+RUN is used when building the image.
 
+CMD is used after starting the container.
 
+## Conda
+`conda config --set auto_activate_base false` to stop conda from running automatically on startup.
