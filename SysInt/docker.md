@@ -14,7 +14,7 @@ When compiled creates an image that can uploaded on the coloud like github and c
 FROM node:alpine 
 COPY . /app
 WORKDIR /app
-CMD node app.js
+CMD node test.js
 ```
 
 Import the alpine version of linux.
@@ -51,3 +51,5 @@ Good to go!
 
 ## Ros containers
 Do we need multiple containers?
+
+##
