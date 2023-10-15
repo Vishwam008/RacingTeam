@@ -29,3 +29,10 @@ Output: `Full Name[]: ` Add data if needed or press Enter to give default values
 `conda config --set auto_activate_base false` to stop conda from running automatically on startup.
 
 
+## IITBdv
+
+sudo apt-get install ros-noetic-fkie-multimaster-msgs
+
+remove mrpt_icp_slam_2d , generic sensor and sensorlib
+
+While building IITBdv delete mrpt_sensors from IITBdv and install all the dependencies from <a href="https://docs.mrpt.org/reference/latest/compiling.html"> here </a>(except ros2).

@@ -100,7 +100,7 @@ Connecting volumes of container to host: `docker run -it -v ABS_PATH_HOST:ABS_PA
 `docker commit c3f279d17e0a  svendowideit/testimage:version3` to commit a docker container to an image
 
 
-`docker run -it     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --device=/dev/dri:/dev/dri   vishwam008/hello-docker:ros_torch_tensor  ` : To use gui applications.
+`docker run -it     --env="DISPLAY"     --env="QT_X11_NO_MITSHM=1"     --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw"  --device=/dev/dri:/dev/dri   -v ~/mounted:/mounted    vishwam008/hello-docker:ros_torch_tensor  ` : To use gui applications.
 
 
 ## A custom image

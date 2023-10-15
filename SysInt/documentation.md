@@ -133,6 +133,26 @@ This can be used to override a parameter of a file that was loaded before.
 
 ***TIP:***Put all config files into one package and launch files into other to avoid cyclic dependencies.
 
+### Python not importing modules:
+create a setup.py file in the ros package:
+```
+from distutils.core import setup
+from catkin_pkg.python_setup import generate_distutils_setup
+
+d = generate_distutils_setup(
+    packages=['my_robot_common'], # Name of package to be imported
+    package_dir={'': 'src'}     # path of package to be imported (here: src)
+)
+
+setup(**d)
+```
+
+In CMakeLists.txt, add `catkin_python_setup()` just before `catkin_package()`.
+
+Add `<exec_depend>rospy</exec_depend>` to package.xml if not already added.
+
+Build the workspace.
+
 <br><br>
 
 ## rosed
@@ -443,3 +463,5 @@ rosrun tf tf_echo [reference_frame] [target_frame]
 
 ### tf frames
 Frames are very convenient and aid to visualization. Easy to visualize the LIDAR data from the FOR of LIDAR.
+
+
