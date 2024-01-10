@@ -55,7 +55,7 @@ modprobe command adds or removes a module from the linux kernel.
 
 ```
 $ sudo ip link add dev vcan0 type vcan
-$ sudi ip link set up vcan
+$ sudi ip link set up vcan0
 ```
 Added the device of type vcan named vcan0
 

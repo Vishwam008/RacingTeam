@@ -67,7 +67,54 @@
 
 	* <package_name> - a directory with the same name as your package, used by ROS 2 tools to find your package, contains __init__.py
 
+* `colcon build --packages-select my_package` to build a single package
 
+* To use python scripts you cannot use cmake you have to build uding colcon and use setup.py etc.
 
+* Fill the maintainer, description and license. These shall match exactly in the package.xml and setup.py
 
+## Ros2 nodes
+* ```
+	<exec_depend>rclpy</exec_depend>
+	<exec_depend>std_msgs</exec_depend>
+  ``` Add these to package.xml
+
+* ```entry_points={
+        'console_scripts': [
+                'talker = py_pubsub.publisher_member_function:main',
+        ],
+},``` Add to setup.py
+
+* Check dependencies and build
+
+## Custom msg and srv
+* Can only be created in a cmake package but can be used by any package
+
+* implementation of custom msg in nodes is the same 
+
+* Add this to `CMakeLists.txt`:
+	```
+	find_package(geometry_msgs REQUIRED)
+	find_package(rosidl_default_generators REQUIRED)
+	rosidl_generate_interfaces(${PROJECT_NAME}
+	  "msg/Num.msg"
+	  "msg/Sphere.msg"
+	  "srv/AddThreeInts.srv"
+	  DEPENDENCIES geometry_msgs # Add packages that above messages depend on, in this case geometry_msgs for Sphere.msg
+	)
+	```
+
+* Add this to `package.xml`:
+	```
+	<depend>geometry_msgs</depend>
+	<buildtool_depend>rosidl_default_generators</buildtool_depend>
+	<exec_depend>rosidl_default_runtime</exec_depend>
+	<member_of_group>rosidl_interface_packages</member_of_group>
+	```
+
+* Build the package
+
+* Create a new package for interfaces with cmake.
+
+* Add this to `package.xml` of the package in which you want to use the custom msg: `<exec_depend>tutorial_interfaces</exec_depend>`
 
