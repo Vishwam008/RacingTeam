@@ -77,18 +77,23 @@
 * ```
 	<exec_depend>rclpy</exec_depend>
 	<exec_depend>std_msgs</exec_depend>
-  ``` Add these to package.xml
+  ``` 
+
+  Add these to package.xml
 
 * ```entry_points={
         'console_scripts': [
                 'talker = py_pubsub.publisher_member_function:main',
         ],
-},``` Add to setup.py
+},
+  ``` 
+
+  Add to setup.py
 
 * Check dependencies and build
 
 ## Custom msg and srv
-* Can only be created in a cmake package but can be used by any package
+* Can only be created in a cmake package but can be used by any package `ros2 pkg create --build-type ament_cmake tutorial_interfaces`
 
 * implementation of custom msg in nodes is the same 
 
