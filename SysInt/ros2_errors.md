@@ -9,3 +9,6 @@
 
 * Use setuptools version `58.2.0` and not the latest one. `pip install setuptools==58.2.0`
 
+## Launch files executable not found
+* `launch.substitutions.substitution_failure.SubstitutionFailure: executable 'sub.py' not found on the libexec directory '/home/vishwam/colcon_ws/install/hello_new/lib/hello_new'`
+* Do not use .py in the executable. Just use the name of the file.
